@@ -16,7 +16,7 @@ Inicia sesión en el **portal de Azure** utilizando las credenciales proporciona
 
 ## Cargar la plantilla ARM usando el portal de Azure
 
-1. Descarga la plantilla ARM a tu computadora o copia el texto de la plantilla desde el repositorio de GitHub indicado.  
+1. Descarga la plantilla ARM a tu computadora o copia el texto de la plantilla desde el repositorio de GitHub indicado [aquí](./labstoragetemplate.json).  
 2. En el portal de Azure, haz clic en **Create a resource (Crear un recurso)**.  
 3. En la barra de búsqueda, escribe **“template”** y selecciona la opción **Template deployment (deploy using custom templates)** del menú contextual.  
 4. Haz clic en **Create (Crear)**.  
