@@ -1,3 +1,86 @@
+# Desplegando plantillas de Azure
+
+## Introducción
+En este laboratorio práctico utilizaremos el **portal de Azure** para **modificar una plantilla QuickStart** y agregar un disco de datos adicional antes de su implementación.  
+Posteriormente, desplegaremos la plantilla y confirmaremos que los cambios realizados se aplicaron correctamente.
+
+Tu jefe te ha pedido que implementes una **máquina virtual Windows Server 2019**, pero necesitas modificar la plantilla para agregarle un **disco de datos adicional**.
+
+---
+
+## Solución
+
+### Conectarse al portal de Azure con la cuenta del laboratorio
+1. Inicia sesión en el **portal de Azure** usando las credenciales proporcionadas en la página de instrucciones del laboratorio.
+
+---
+
+### Usar la implementación de plantillas y editar la plantilla
+
+1. Haz clic en **+ Create (Crear)**.  
+2. En la barra de búsqueda, escribe **template** y selecciona **Template deployment (deploy using custom templates)**.  
+3. Haz clic en **Create > Template deployment (deploy using custom templates)**.  
+4. Selecciona **Create a Windows virtual machine**.  
+5. Asegúrate de que el **grupo de recursos** proporcionado esté seleccionado en la lista desplegable.  
+6. Haz clic en **Edit template (Editar plantilla)**.
+
+Busca la sección **"dataDisks"** (alrededor de la línea 290) y actualízala con lo siguiente.  
+Recuerda indentar `"dataDisks"` para que quede alineado con `"osDisk"`:
+
+```json
+"dataDisks": [
+  {
+    "diskSizeGB": 1023,
+    "lun": 0,
+    "createOption": "Empty"
+  },
+  {
+    "diskSizeGB": 1023,
+    "lun": 1,
+    "createOption": "Empty"
+  }
+]
+```
+
+Luego, encuentra la sección **"vmSize"** (alrededor de la línea 130) y cambia el valor de `"defaultValue"` a `"Standard_D2s_v3"` (con comillas).
+
+Haz clic en **Save (Guardar)**.
+
+---
+
+### Editar los parámetros
+
+1. Haz clic en **Edit parameters (Editar parámetros)**.  
+2. En `"adminUsername"`, cambia el valor (`"value"`) a `"localadmin"`.  
+3. En `"dnsLabelPrefix"`, cambia el valor a algo único (con comillas).  
+   - Ejemplo: `"vm1446aaadd"` donde `aaa` son tus iniciales y `dd` una fecha de tu elección.  
+4. Haz clic en **Save (Guardar)**.
+
+---
+
+### Crear la máquina virtual
+
+1. En el campo **Admin Password**, introduce una contraseña segura.  
+2. Haz clic en **Review + create (Revisar + crear)**.  
+3. Luego, haz clic en **Create (Crear)**.
+
+---
+
+### Verificar la implementación
+
+1. Haz clic en la **campana de notificaciones** (arriba a la derecha) para ver el estado del despliegue.  
+2. Haz clic en el estado para abrir la máquina virtual.  
+3. Una vez completado el despliegue, haz clic en **Home (Inicio)**.  
+4. Selecciona **All resources (Todos los recursos)**.  
+5. Haz clic en la máquina virtual **simple-vm**.  
+6. En **Settings → Disks**, verifica que existan **dos discos de datos**: **LUN 0** y **LUN 1**.
+
+---
+
+## Conclusión
+🎉 ¡Felicidades! Has completado este laboratorio práctico sobre **despliegue de plantillas de Azure (ARM)** y confirmaste cómo modificar una plantilla para incluir discos adicionales antes de su implementación.
+
+
 # Desplegar recursos utilizando una plantilla ARM en el portal de Azure
 
 ## Introducción
